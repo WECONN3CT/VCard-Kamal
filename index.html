@@ -405,8 +405,8 @@
         /* Dark Mode Toggle */
         .theme-toggle {
             position: fixed;
-            top: 80px;
-            right: 24px;
+            top: 32px;
+            right: 32px;
             width: 48px;
             height: 48px;
             border-radius: 50%;
@@ -612,8 +612,8 @@
             }
             
             .theme-toggle {
-                top: 70px;
-                right: 20px;
+                top: calc(env(safe-area-inset-top, 0px) + 24px);
+                right: calc(env(safe-area-inset-right, 0px) + 24px);
                 width: 44px;
                 height: 44px;
                 z-index: 9999;
