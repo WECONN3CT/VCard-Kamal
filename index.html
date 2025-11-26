@@ -1285,84 +1285,82 @@
             
             if (newTab) {
               // Erstelle eine simple HTML-Seite mit Download-Link
-              newTab.document.write(`
-                <!DOCTYPE html>
-                <html lang="de">
-                <head>
-                  <meta charset="UTF-8">
-                  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-                  <title>Kontakt speichern</title>
-                  <style>
-                    * { margin: 0; padding: 0; box-sizing: border-box; }
-                    body {
-                      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-                      display: flex;
-                      flex-direction: column;
-                      align-items: center;
-                      justify-content: center;
-                      min-height: 100vh;
-                      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-                      color: white;
-                      padding: 20px;
-                      text-align: center;
-                    }
-                    .container {
-                      background: rgba(255, 255, 255, 0.1);
-                      backdrop-filter: blur(10px);
-                      padding: 40px;
-                      border-radius: 20px;
-                      max-width: 500px;
-                    }
-                    h1 { font-size: 24px; margin-bottom: 20px; }
-                    .download-btn {
-                      display: inline-block;
-                      padding: 16px 32px;
-                      background: white;
-                      color: #667eea;
-                      text-decoration: none;
-                      border-radius: 12px;
-                      font-weight: 600;
-                      font-size: 18px;
-                      margin: 20px 0;
-                      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
-                      transition: transform 0.2s;
-                    }
-                    .download-btn:active {
-                      transform: scale(0.95);
-                    }
-                    .info {
-                      font-size: 14px;
-                      opacity: 0.9;
-                      margin-top: 20px;
-                      line-height: 1.6;
-                    }
-                    .emoji { font-size: 48px; margin-bottom: 20px; }
-                  </style>
-                </head>
-                <body>
-                  <div class="container">
-                    <div class="emoji">📇</div>
-                    <h1>Kontakt herunterladen</h1>
-                    <p>Tippe auf den Button, um den Kontakt zu speichern</p>
-                    <a href="${dataUrl}" download="${filename}" class="download-btn" onclick="setTimeout(() => window.close(), 1000)">
-                      📥 ${contact.name} speichern
-                    </a>
-                    <div class="info">
-                      <strong>Hinweis:</strong><br>
-                      Nach dem Download öffne die Datei in deiner Kontakte-App oder im Download-Ordner.
-                    </div>
-                  </div>
-                  <script>
-                    // Auto-trigger download nach kurzer Verzögerung
-                    setTimeout(() => {
-                      const link = document.querySelector('.download-btn');
-                      link.click();
-                    }, 500);
-                  </script>
-                </body>
-                </html>
-              `);
+              const downloadPageHTML = `<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kontakt speichern</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      padding: 20px;
+      text-align: center;
+    }
+    .container {
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      padding: 40px;
+      border-radius: 20px;
+      max-width: 500px;
+    }
+    h1 { font-size: 24px; margin-bottom: 20px; }
+    .download-btn {
+      display: inline-block;
+      padding: 16px 32px;
+      background: white;
+      color: #667eea;
+      text-decoration: none;
+      border-radius: 12px;
+      font-weight: 600;
+      font-size: 18px;
+      margin: 20px 0;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+      transition: transform 0.2s;
+    }
+    .download-btn:active {
+      transform: scale(0.95);
+    }
+    .info {
+      font-size: 14px;
+      opacity: 0.9;
+      margin-top: 20px;
+      line-height: 1.6;
+    }
+    .emoji { font-size: 48px; margin-bottom: 20px; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="emoji">📇</div>
+    <h1>Kontakt herunterladen</h1>
+    <p>Tippe auf den Button, um den Kontakt zu speichern</p>
+    <a href="${dataUrl}" download="${filename}" class="download-btn" onclick="setTimeout(function(){ window.close(); }, 1000)">
+      📥 ${contact.name} speichern
+    </a>
+    <div class="info">
+      <strong>Hinweis:</strong><br>
+      Nach dem Download öffne die Datei in deiner Kontakte-App oder im Download-Ordner.
+    </div>
+  </div>
+</body>
+</html>`;
+              newTab.document.write(downloadPageHTML);
               newTab.document.close();
+              
+              // Trigger Download nach kurzem Delay
+              setTimeout(() => {
+                const link = newTab.document.querySelector('.download-btn');
+                if (link) link.click();
+              }, 500);
               
               showToast('✅ Kontakt öffnet sich in neuem Tab!');
               resolve(true);
