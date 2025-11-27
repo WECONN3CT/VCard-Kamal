@@ -245,16 +245,17 @@
             width: 120px;
             height: 120px;
             border-radius: 50%;
-			/* Violetter Ring um das Bild (füllt den Kreis, Bild bleibt rund) */
+			/* Violetter Ring wie im Screenshot */
 			padding: 10px;
 			background: linear-gradient(135deg, var(--accent-purple), var(--primary-purple));
+			background-clip: padding-box;
+			border: none;
 			box-shadow: 0 8px 32px rgba(139, 92, 246, 0.25),
-						0 0 0 1px rgba(139, 92, 246, 0.1);
+			            0 0 0 1px rgba(139, 92, 246, 0.1);
             object-fit: cover;
             margin: 0 auto;
             display: block;
-			/* Kein zusätzlicher Border mehr notwendig */
-			border: none;
+			/* Bild füllt den Kreis komplett aus */
         }
 
         .name {
@@ -566,12 +567,13 @@
             border-bottom: 1px solid rgba(255, 255, 255, 0.1);
         }
 
-        body.dark-mode .avatar {
-			/* Gleicher Ring auch in Dark Mode */
+		body.dark-mode .avatar {
+			/* Gleicher Ring auch im Dark Mode */
+			padding: 10px;
 			background: linear-gradient(135deg, var(--accent-purple), var(--primary-purple));
-			box-shadow: 0 8px 32px rgba(139, 92, 246, 0.4);
 			border: none;
-        }
+			box-shadow: 0 8px 32px rgba(139, 92, 246, 0.4);
+		}
 
         body.dark-mode .name {
             color: #ffffff;
