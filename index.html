@@ -232,7 +232,7 @@
             position: relative;
             text-align: center;
             padding: 0 32px;
-			margin-top: -30px;
+            margin-top: -30px;
             animation: fadeIn 0.8s ease-out 0.2s both;
         }
 
@@ -245,17 +245,13 @@
             width: 120px;
             height: 120px;
             border-radius: 50%;
-			/* Violetter Ring wie im Screenshot */
-			padding: 10px;
-			background: linear-gradient(135deg, var(--accent-purple), var(--primary-purple));
-			background-clip: padding-box;
-			border: none;
-			box-shadow: 0 8px 32px rgba(139, 92, 246, 0.25),
-			            0 0 0 1px rgba(139, 92, 246, 0.1);
+            border: 4px solid rgba(255, 255, 255, 0.8);
+            box-shadow: 0 8px 32px rgba(139, 92, 246, 0.25), 
+                        0 0 0 1px rgba(139, 92, 246, 0.1);
             object-fit: cover;
             margin: 0 auto;
             display: block;
-			/* Bild füllt den Kreis komplett aus */
+            background: #ffffff;
         }
 
         .name {
@@ -567,13 +563,11 @@
             border-bottom: 1px solid rgba(255, 255, 255, 0.1);
         }
 
-		body.dark-mode .avatar {
-			/* Gleicher Ring auch im Dark Mode */
-			padding: 10px;
-			background: linear-gradient(135deg, var(--accent-purple), var(--primary-purple));
-			border: none;
-			box-shadow: 0 8px 32px rgba(139, 92, 246, 0.4);
-		}
+        body.dark-mode .avatar {
+            border: 4px solid rgba(139, 92, 246, 0.3);
+            box-shadow: 0 8px 32px rgba(139, 92, 246, 0.4);
+            background: #000000;
+        }
 
         body.dark-mode .name {
             color: #ffffff;
