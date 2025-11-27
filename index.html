@@ -245,13 +245,16 @@
             width: 120px;
             height: 120px;
             border-radius: 50%;
-            border: 4px solid rgba(255, 255, 255, 0.8);
-            box-shadow: 0 8px 32px rgba(139, 92, 246, 0.25), 
-                        0 0 0 1px rgba(139, 92, 246, 0.1);
+			/* Violetter Ring um das Bild (füllt den Kreis, Bild bleibt rund) */
+			padding: 10px;
+			background: linear-gradient(135deg, var(--accent-purple), var(--primary-purple));
+			box-shadow: 0 8px 32px rgba(139, 92, 246, 0.25),
+						0 0 0 1px rgba(139, 92, 246, 0.1);
             object-fit: cover;
             margin: 0 auto;
             display: block;
-            background: #ffffff;
+			/* Kein zusätzlicher Border mehr notwendig */
+			border: none;
         }
 
         .name {
@@ -564,9 +567,10 @@
         }
 
         body.dark-mode .avatar {
-            border: 4px solid rgba(139, 92, 246, 0.3);
-            box-shadow: 0 8px 32px rgba(139, 92, 246, 0.4);
-            background: #000000;
+			/* Gleicher Ring auch in Dark Mode */
+			background: linear-gradient(135deg, var(--accent-purple), var(--primary-purple));
+			box-shadow: 0 8px 32px rgba(139, 92, 246, 0.4);
+			border: none;
         }
 
         body.dark-mode .name {
